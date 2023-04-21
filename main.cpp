@@ -9,7 +9,7 @@
 class MyWidget : public QWidget {
 public:
     MyWidget(QWidget *parent = nullptr) : QWidget(parent) {
-        button = new QPushButton(" touch me", this);
+        button = new QPushButton(" 点击我", this);
         connect(button, &QPushButton::clicked, this, &MyWidget::on_button_clicked);
     }
 
