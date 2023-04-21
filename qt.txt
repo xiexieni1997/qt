@@ -1,0 +1,32 @@
+在 CLion 中引用 Qt 库需要进行以下步骤：
+
+在 CLion 中创建一个新的 C++ 项目。
+在项目的 CMakeLists.txt 文件中添加以下代码：
+cmake_minimum_required(VERSION 3.0)
+project(MyProject)
+
+set(CMAKE_CXX_STANDARD 11)
+
+# Find the Qt5Core library
+find_package(Qt5Core REQUIRED)
+
+# Add the Qt5Core library to the project
+target_link_libraries(MyProject Qt5::Core)
+在 CLion 中打开项目的 Settings/Preferences 对话框，选择 Build, Execution, Deployment > CMake。
+在 CMake options 中添加以下代码：
+-DCMAKE_PREFIX_PATH=/path/to/Qt/5.x.x/gcc_64/lib/cmake/Qt5/
+其中，/path/to/Qt/5.x.x/gcc_64/ 是你的 Qt 安装路径，5.x.x 是你的 Qt 版本号。
+
+重新加载 CMake 项目，然后就可以在代码中使用 Qt 库了。
+例如，你可以在代码中添加以下代码来测试 Qt 库是否正常工作：
+
+cpp
+#include <QtCore/QCoreApplication>
+#include <QtCore/QDebug>
+
+int main(int argc, char *argv[])
+{
+    QCoreApplication app(argc, argv);
+    qDebug() << "Hello, Qt!";
+    return app.exec();
+}
